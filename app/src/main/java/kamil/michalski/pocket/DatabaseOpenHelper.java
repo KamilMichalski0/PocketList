@@ -5,6 +5,9 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;
+import com.j256.ormlite.table.TableUtils;
+
+import java.sql.SQLException;
 
 /**
  * Created by ppg38 on 08.01.2017.
@@ -21,6 +24,11 @@ public class DatabaseOpenHelper extends OrmLiteSqliteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
+        try {
+            TableUtils.createTable(connectionSource,Link.class);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
